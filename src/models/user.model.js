@@ -56,7 +56,7 @@ const userSchema = new Schema(
 userSchema.pre("save",async function (next) {
     if(!this.isModified("password")) return next();
     //yaha pe agar modification nahi hua ho tab hi aage jayega password 
-    this.password = bcrypt.hash(this.password,10)
+    this.password = await bcrypt.hash(this.password,10)
     next()    //wapas fir se har bar password chnage karega sirf ye 
     //agar password medifation ho to hipassword chnage hona chiaye
 
