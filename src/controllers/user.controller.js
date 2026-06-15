@@ -20,8 +20,8 @@ const registerUser = asyncHandler( async (req,res) =>{
     //return  response [res]
 
 
-    const {fullName,username,email,password}=req.body;
-    // console.log("Email :",email);
+    const { fullName,username,email,password}=req.body;
+    console.log("Email :",email);
 
     if (
         [fullName,email,username,password].some((field)=> field?.trim() === "")  // if field is empty itwill return true remember
@@ -29,7 +29,7 @@ const registerUser = asyncHandler( async (req,res) =>{
         throw new ApiError(400,"All fields are required !");
     }
 
-    const exitedUser=User.findOne({
+    const exitedUser= await User.findOne({
         $or : [{ username },{ email }]
     })
 

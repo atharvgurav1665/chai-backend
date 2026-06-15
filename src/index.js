@@ -4,7 +4,7 @@ import connectDB from "./db/db.js";
 import {app} from './app.js'
 
 dotenv.config({
-    path :'./env'
+    path :'./.env'
 })
 
 connectDB()
@@ -38,7 +38,7 @@ connectDB()
 
 
 
-/*  # 1st approch for creating & connecting  database code simple but complex
+/* 1st approch for creating & connecting  database code simple but complex
 
 import express from "express";
 const app= express()
