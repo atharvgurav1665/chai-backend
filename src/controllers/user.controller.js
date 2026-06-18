@@ -3,7 +3,7 @@ import {ApiError} from "../utils/ApiErrors.js";
 import {User} from "../models/user.model.js"
 import {uploadOnCloudinary} from "../utils/cloudinary.js"
 import { ApiResponse } from "../utils/ApiResponse.js";
-
+import mongoose from "mongoose";
 
 
 const registerUser = asyncHandler( async (req,res) =>{
@@ -20,13 +20,13 @@ const registerUser = asyncHandler( async (req,res) =>{
     //return  response [res]
 
 
-    const { fullName,username,email,password}=req.body;
-    console.log("Email :",email);
+    const { fullName,username,email,password}=req.body
+    // console.log("Email :",email);
 
     if (
         [fullName,email,username,password].some((field)=> field?.trim() === "")  // if field is empty itwill return true remember
     ) {
-        throw new ApiError(400,"All fields are required !");
+        throw new ApiError(400,"All fields are required !")
     }
 
     const exitedUser= await User.findOne({
@@ -34,9 +34,11 @@ const registerUser = asyncHandler( async (req,res) =>{
     })
 
     if(exitedUser){
-        throw new ApiError(409,"user with username already exits !")
+        throw new ApiError(409,"user with username already exits !");
     }
-
+    
+    console.log(req.files);
+    
     const avatarLocalPath = req.files?.avatar[0]?.path;
     const coverImageLocalPath = req.files?.coverImage[0]?.path;
     

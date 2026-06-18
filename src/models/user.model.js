@@ -52,15 +52,20 @@ const userSchema = new Schema(
         timestamps:true
     }
 )
-
-userSchema.pre("save",async function (next) {
+userSchema.pre("save", async function (next) {
     if(!this.isModified("password")) return next();
-    //yaha pe agar modification nahi hua ho tab hi aage jayega password 
-    this.password = await bcrypt.hash(this.password,10)
-    next()    //wapas fir se har bar password chnage karega sirf ye 
-    //agar password medifation ho to hipassword chnage hona chiaye
 
+    this.password = await bcrypt.hash(this.password, 10);
+    next();
 })
+// userSchema.pre("save",async function (next) {
+//     if(!this.isModified("password")) return next();
+//     //yaha pe agar modification nahi hua ho tab hi aage jayega password 
+//     this.password = await bcrypt.hash(this.password,10)
+//     next()    //wapas fir se har bar password chnage karega sirf ye 
+//     //agar password medifation ho to hipassword chnage hona chiaye
+
+// })
 
 userSchema.methods.isPasswordCorrect = async function(password){
     return await bcrypt.compare(password,this.password)
