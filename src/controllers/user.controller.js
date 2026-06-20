@@ -19,9 +19,16 @@ const generateAccessAndRefreshTokens = async(userId)=>{
 
 
 
-    }catch(error){
-        throw new ApiError(500,"Something went wrong while generating refresh and access token")
-    }
+    } catch (error) {
+    console.error("Token generation error:", error);
+    throw error;
+}
+    
+    
+    
+    // catch(error){
+    //     throw new ApiError(500,"Something went wrong while generating refresh and access token")
+    // }
     
 }
 
@@ -123,7 +130,8 @@ const loginUser = asyncHandler(async (req,res) => {
 
     const {email , username,password} = req.body
     
-    if(!username || !email) {
+        //(!username && !email)   -- alternative for below if condition 
+    if(!(username || email)) {
         //agar user ke pass username or email dono na ho to ye error ayega in return ...
         throw new ApiError(400,"username or passowrd is required ")
     }
