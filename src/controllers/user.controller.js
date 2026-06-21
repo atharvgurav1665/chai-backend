@@ -34,6 +34,7 @@ const generateAccessAndRefreshTokens = async(userId)=>{
     
 }
 
+//register controller 
 
 const registerUser = asyncHandler( async (req,res) =>{
     //steps for registation of user --->>>
@@ -121,6 +122,7 @@ const registerUser = asyncHandler( async (req,res) =>{
 
 })
 
+//login user controller
 const loginUser = asyncHandler(async (req,res) => {
     // req body -> data 
     // username or email 
@@ -207,6 +209,8 @@ const logoutUser = asyncHandler(async(req,res)=> {
     .json(new ApiResponse(200,{},"User Logged Out"))
 
 })
+
+//refresh access token -->>
 
 const refreshAccessToken = asyncHandler(async(req,res) => {
     const incomingRefreshToken = req.cookies.refreshToken || req.body.refreshToken
