@@ -441,7 +441,7 @@ const getUserChannelProfile = asyncHandler(async(req,res) => {
         new ApiResponse(200,channel[0],"User Channel Fetched SuccessFully ")
     )
 })
-console.log(channel);
+
 
 const getWatchHistory = asyncHandler(async(req,res)=>{
     const user = await User.aggregate([
