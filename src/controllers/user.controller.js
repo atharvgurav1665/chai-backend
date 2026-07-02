@@ -442,7 +442,7 @@ const getUserChannelProfile = asyncHandler(async(req,res) => {
     )
 })
 
-
+//watch history controller --->>>
 const getWatchHistory = asyncHandler(async(req,res)=>{
     const user = await User.aggregate([
         {
@@ -490,6 +490,9 @@ const getWatchHistory = asyncHandler(async(req,res)=>{
         new ApiResponse(200,user[0].watchHistory,"watch Hostory Fetched SuccessFully ")
     )
 })
+
+
+
 //exporting all functions -->> 
 export {
     registerUser,
