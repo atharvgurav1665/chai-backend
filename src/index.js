@@ -25,7 +25,7 @@ connectDB()
 
 
 
-
+////"dev": "nodemon --env-file=.env src/index.js"
 
 
 
